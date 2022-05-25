@@ -1,0 +1,37 @@
+.sidebar-body{
+    background-color: rgb(12, 12, 12);
+    color: white;
+    width: 20vw;
+    padding-top: 5vh;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar-items-wrapper{
+    list-style: none;
+}
+
+.sidebar-items{
+    margin-top: 3vh;
+    width: 300px;
+    height: 5vh;
+    padding-left: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-items:hover{
+    background-color: white;
+    color: black;
+}
+
+.link{
+    text-decoration: none;
+    color: white;
+}
+
