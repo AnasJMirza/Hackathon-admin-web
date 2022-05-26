@@ -1,11 +1,45 @@
-const ADD_ITEMS = "ADD_ITEMS";
-const DEL_ITEMS = "DEL_ITEMS"
+import { addDoc, collection, getDocs, updateDoc } from "firebase/firestore"; 
+import { db } from "../../config/firebase";
 
 
-const addItems = () => async (dispatch) => {
+
+export const ADD_ITEMS = "ADD_ITEMS";
+export const DEL_ITEMS = "DEL_ITEMS"
+export const FETCH_PRODUCTS = "FETCH_PRODUCTS"
 
 
-    dispatch({
-        type : ADD_ITEMS
-    })
+// const addItems = () => async (dispatch) => {
+//     try {
+
+//         await addDoc(collection(db, "products"), )
+        
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
+
+
+export const fetchProducts = () => async (dispatch) => {
+    try {
+
+        console.log("Fetch Products Action Run");
+
+        const products = []
+        const productsFromFirebase = await getDocs(collection(db, "products"))
+        
+
+        productsFromFirebase.docs.map((item)=>{
+            products.push({...item.data(), id : item.id})
+        })
+        console.log(products);
+
+        dispatch({
+            type : FETCH_PRODUCTS,
+            payload : products
+        })
+
+        
+    } catch (error) {
+        alert(error.message)
+    }
 }
