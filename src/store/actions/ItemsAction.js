@@ -19,7 +19,8 @@ export const FETCH_PRODUCTS = "FETCH_PRODUCTS"
 // }
 
 
-export const fetchProducts = () => async (dispatch) => {
+export const fetchProducts = (setLoader) => async (dispatch) => {
+    setLoader(true)
     try {
 
         console.log("Fetch Products Action Run");
@@ -41,5 +42,8 @@ export const fetchProducts = () => async (dispatch) => {
         
     } catch (error) {
         alert(error.message)
+    }
+    finally{
+        setLoader(false)
     }
 }
