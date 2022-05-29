@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { fetchProducts } from '../../../store/actions/ItemsAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import './Items.css'
+import Button from '../../button/Button';
 
 const Items = () => {
 
@@ -41,15 +43,22 @@ const Items = () => {
                     <th>Action</th>
                 </tr>
 
-                {allProducts.map((item, index)=>{
+                {allProducts?.map((item, index)=>{
                     return <tr>
                         <td>{index + 1}</td>
                         <td>{item.title}</td>
                         <td> ${item.price}</td>
-                        <td> <button>Delete</button></td>
+                        <td className='actions'> <button ><Button title="Delete" width="6vw"/></button></td>
                     </tr>
                 })}
+
             </table>
+
+            <Link to="/add-products-form" className='buttons' >
+                <Button title="Add Products" width="100vw"/>
+            </Link>
+
+            
         </div>
     );
 };

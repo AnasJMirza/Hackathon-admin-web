@@ -1,0 +1,13 @@
+.button-body{
+    background-color: crimson;
+    /* width: 100vw; */
+    height: 6vh;
+    padding: 4px;
+    border-radius: 4px;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

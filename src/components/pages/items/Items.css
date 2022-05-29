@@ -2,8 +2,26 @@
     width: 80vw;
     position: absolute;
     left: 20vw;
+
+    padding: 10vh;
+    
 }
 
 .table{
     width: 100%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.actions{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.actions button{
+    border: none;
 }
