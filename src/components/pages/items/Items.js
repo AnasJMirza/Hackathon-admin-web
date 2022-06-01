@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import './Items.css'
 import Button from '../../button/Button';
+import { ToastContainer } from 'react-toastify';
+import { PuffLoader } from 'react-spinners';
 
 const Items = () => {
 
@@ -26,7 +28,9 @@ const Items = () => {
 
     if(loader){
         return <div className='items-body'>
-            <h1>Loading...</h1>
+            <div className='loading-screen'>
+                <PuffLoader color={"crimson"}  size={60} />
+            </div>
         </div>
     }
     
@@ -34,12 +38,26 @@ const Items = () => {
 
 
     return (
+
         <div className='items-body'>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
+            <ToastContainer />
             <table border="1" className='table'>
                 <tr>
                     <th>SR#</th>
                     <th>Title</th>
                     <th>Price</th>
+                    <th>Catagory</th>
                     <th>Action</th>
                 </tr>
 
@@ -48,6 +66,7 @@ const Items = () => {
                         <td>{index + 1}</td>
                         <td>{item.title}</td>
                         <td> ${item.price}</td>
+                        <td> {item.catagory}</td>
                         <td className='actions'> <button ><Button title="Delete" width="6vw"/></button></td>
                     </tr>
                 })}

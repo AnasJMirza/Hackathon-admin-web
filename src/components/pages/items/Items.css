@@ -25,3 +25,8 @@
 .actions button{
     border: none;
 }
+
+.loading-screen{
+    display: flex;
+    justify-content: center;
+}

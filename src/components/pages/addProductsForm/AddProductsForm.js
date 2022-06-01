@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {useDispatch} from 'react-redux'
 import { addProducts } from '../../../store/actions/ItemsAction';
 import Button from '../../button/Button';
+import { Link } from 'react-router-dom';
+import {PuffLoader} from 'react-spinner'
 import './AddProductsForm.css'
 
 const AddProductsForm = () => {
@@ -35,7 +37,9 @@ const AddProductsForm = () => {
 
     if(loader){
         return <div className='form-body'>
-            <h1>Loading...</h1>
+            <div className='loading-screen'>
+                <PuffLoader color="crimson" size={60}/>
+            </div>
         </div>
     }
 
@@ -55,7 +59,7 @@ const AddProductsForm = () => {
                 </select>
 
                 <div onClick={submitHandler}>
-                    <Button title="Submit" width="10vw" />
+                    <Link to="/items"><Button title="Submit" width="10vw" /></Link>
                 </div>
             </form>
         </div>

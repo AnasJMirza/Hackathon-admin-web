@@ -1,5 +1,7 @@
 import { addDoc, collection, getDocs, updateDoc } from "firebase/firestore"; 
 import { db } from "../../config/firebase";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -55,6 +57,9 @@ export const addProducts = (productTitle, productPrice, productCatagory, setLoad
 
         
         await addDoc(collection(db, "products"), {title : productTitle, price : productPrice, catagory : productCatagory,  description : 'Apple M1 chip with 8-core CPU, 8‑core GPU, and 16‑core Neural Engine; 8GB unified memory; 256GB SSD storage; 13-inch Retina display with True Tone ...'})
+
+        toast.success("Cha Gye ho Bhai 🔥")
+
         
     } catch (error) {
         alert(error.message)
