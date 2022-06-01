@@ -14,6 +14,7 @@ const AddProductsForm = () => {
 
     let productTitle = "";
     let productPrice = "";
+    let productCatagory = "";
 
     const titleGetter = (e) => {
         productTitle = e.target.value
@@ -23,9 +24,13 @@ const AddProductsForm = () => {
         productPrice = e.target.value
     }
 
+    const catagoryGetter = (e) => {
+        productCatagory = e.target.value
+    }
+
 
     const submitHandler = () => {
-        dispatch(addProducts(productTitle, productPrice, setLoader))
+        dispatch(addProducts(productTitle, productPrice, productCatagory, setLoader))
     }
 
     if(loader){
@@ -39,6 +44,7 @@ const AddProductsForm = () => {
             <form action='#'>
                 <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title' />
                 <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' />
+                <input  onChange={(e)=>catagoryGetter(e)} type="string" placeholder='Product Catagory' />
                 <div onClick={submitHandler}>
                     <Button title="Submit" width="10vw" />
                 </div>
