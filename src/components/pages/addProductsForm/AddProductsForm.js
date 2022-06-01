@@ -44,7 +44,16 @@ const AddProductsForm = () => {
             <form action='#'>
                 <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title' />
                 <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' />
-                <input  onChange={(e)=>catagoryGetter(e)} type="string" placeholder='Product Catagory' />
+                {/* <input  onChange={(e)=>catagoryGetter(e)} type="string" placeholder='Product Catagory' /> */}
+
+                <select onChange={(e)=>catagoryGetter(e)}>
+                    <option value="catagory">catagory</option>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                    <option value="kids">Kids</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+
                 <div onClick={submitHandler}>
                     <Button title="Submit" width="10vw" />
                 </div>
