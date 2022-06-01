@@ -7,12 +7,17 @@ import './Items.css'
 import Button from '../../button/Button';
 import { ToastContainer } from 'react-toastify';
 import { PuffLoader } from 'react-spinners';
+import { deleteItem } from '../../../store/actions/ItemsAction';
 
 const Items = () => {
 
     const [loader, setLoader] = useState(false)
 
     const dispatch = useDispatch()
+
+    const deleteItems = (item) => {
+        dispatch(deleteItem(setLoader, item))
+    }
 
     
 
@@ -67,7 +72,7 @@ const Items = () => {
                         <td>{item.title}</td>
                         <td> ${item.price}</td>
                         <td> {item.catagory}</td>
-                        <td className='actions'> <button ><Button title="Delete" width="6vw"/></button></td>
+                        <td className='actions'> <button onClick={()=>deleteItems(item)}><Button title="Delete" width="6vw"/></button></td>
                     </tr>
                 })}
 

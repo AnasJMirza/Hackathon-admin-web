@@ -1,7 +1,8 @@
-import { addDoc, collection, getDocs, updateDoc } from "firebase/firestore"; 
+import { addDoc, collection, getDocs, updateDoc, deleteDoc, doc, getDoc } from "firebase/firestore"; 
 import { db } from "../../config/firebase";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { async } from "@firebase/util";
 
 
 
@@ -58,7 +59,7 @@ export const addProducts = (productTitle, productPrice, productCatagory, setLoad
         
         await addDoc(collection(db, "products"), {title : productTitle, price : productPrice, catagory : productCatagory,  description : 'Apple M1 chip with 8-core CPU, 8‑core GPU, and 16‑core Neural Engine; 8GB unified memory; 256GB SSD storage; 13-inch Retina display with True Tone ...'})
 
-        toast.success("Cha Gye ho Bhai 🔥")
+        toast.success("Or hukam Sade like ? 🔥")
 
         
     } catch (error) {
@@ -67,4 +68,36 @@ export const addProducts = (productTitle, productPrice, productCatagory, setLoad
     finally{
         setLoader(false)
     }
+}
+
+
+export const deleteItem = (setLoader, item) => async (dispatch) => {
+    setLoader(true)
+    try{
+
+        await deleteDoc(doc(db, "products", item.id))
+
+        const products = []
+        const productsFromFirebase = await getDocs(collection(db, "products"))
+        
+
+        productsFromFirebase.docs.map((item)=>{
+            products.push({...item.data(), id : item.id})
+        })
+        
+        
+
+        dispatch({
+            type : DEL_ITEMS,
+            payload : products
+        })
+
+        toast("Ura dya bro 🔥")
+
+    }catch(error){
+
+    }finally{
+        setLoader(false)
+    }
+
 }

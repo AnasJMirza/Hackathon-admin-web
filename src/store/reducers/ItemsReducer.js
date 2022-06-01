@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from "../actions/ItemsAction"
+import { DEL_ITEMS, FETCH_PRODUCTS } from "../actions/ItemsAction"
 
 
 const initialState = {
@@ -15,6 +15,13 @@ export default function name(state = initialState, action) {
         console.log("Reducer getting the data = ", action.payload);
             
             return{
+                ...state,
+                products : action.payload
+            }
+        
+        case DEL_ITEMS:
+
+            return {
                 ...state,
                 products : action.payload
             }
