@@ -57,7 +57,7 @@ const Items = () => {
                 pauseOnHover
                 />
             <ToastContainer />
-            <table border="1" className='table'>
+            <table className='table'>
                 <tr>
                     <th>SR#</th>
                     <th>Title</th>

@@ -4,11 +4,21 @@
     left: 20vw;
 
     padding: 10vh;
+
     
 }
 
 .table{
     width: 100%;
+    border: 1px solid gray;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+td{
+    padding: 3px;
 }
 
 .buttons{
@@ -29,4 +39,10 @@
 .loading-screen{
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+button{
+    cursor: pointer;
 }

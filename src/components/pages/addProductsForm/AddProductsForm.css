@@ -2,9 +2,61 @@
     width: 80vw;
     position: absolute;
     left: 20vw;
+
+    background-color: rgb(241, 241, 241);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .loading-screen{
     display: flex;
     justify-content: center;
+}
+
+
+.form{
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 30vw;
+    height: 70vh;
+    background-color: white;
+}
+
+.product-information{
+    font-size: 30px;
+    padding: 12px;
+    font-weight: 600;
+    color: crimson;
+}
+
+.hr{
+    background-color: crimson;
+    height: 2px;
+    /* width: 30vw; */
+
+    margin: 0px 10px;
+}
+
+.input-feilds{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 30vh;
+    margin: 0px 10px;
+    margin-top: 5vh;
+}
+
+.input{
+    height: 7vh;
+    padding-left: 5px;
+    border-radius: 5px;
+    border: 1px solid crimson;
+}
+
+.submit-button{
+    margin-left: 10px;
+    margin-top: 10px;
 }

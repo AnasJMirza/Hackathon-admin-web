@@ -5,6 +5,9 @@ import Button from '../../button/Button';
 import { Link } from 'react-router-dom';
 import {PuffLoader} from 'react-spinner'
 import './AddProductsForm.css'
+import { ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../../config/firebase';
+import { onSnapshot } from 'firebase/firestore';
 
 const AddProductsForm = () => {
 
@@ -35,6 +38,7 @@ const AddProductsForm = () => {
         dispatch(addProducts(productTitle, productPrice, productCatagory, setLoader))
     }
 
+
     if(loader){
         return <div className='form-body'>
             <div className='loading-screen'>
@@ -45,20 +49,27 @@ const AddProductsForm = () => {
 
     return (
         <div className='form-body'>
-            <form action='#'>
-                <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title' />
-                <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' />
-                {/* <input  onChange={(e)=>catagoryGetter(e)} type="string" placeholder='Product Catagory' /> */}
+            
 
-                <select onChange={(e)=>catagoryGetter(e)}>
-                    <option value="catagory">catagory</option>
-                    <option value="men">Men</option>
-                    <option value="women">Women</option>
-                    <option value="kids">Kids</option>
-                    <option value="accessories">Accessories</option>
-                </select>
+            <form action='#' className='form'>
+                <p className='product-information'>Prodcut Information</p>
+                <div className='hr'/>
 
-                <div onClick={submitHandler}>
+                <div className='input-feilds'>
+                    <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title'  className='input' / >
+                    <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' className='input' />
+                    {/* <input  onChange={(e)=>catagoryGetter(e)} type="string" placeholder='Product Catagory' /> */}
+
+                    <select onChange={(e)=>catagoryGetter(e)} className='input'>
+                        <option value="catagory">catagory</option>
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                        <option value="kids">Kids</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+
+                <div onClick={submitHandler} className="submit-button">
                     <Link to="/items"><Button title="Submit" width="10vw" /></Link>
                 </div>
             </form>
