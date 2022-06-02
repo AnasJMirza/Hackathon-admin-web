@@ -58,7 +58,7 @@ const AddProductsForm = () => {
                 <div className='input-feilds'>
                     <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title'  className='input' / >
                     <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' className='input' />
-                    {/* <input  onChange={(e)=>catagoryGetter(e)} type="string" placeholder='Product Catagory' /> */}
+                    <input   type="string" placeholder='Description' className='input' />
 
                     <select onChange={(e)=>catagoryGetter(e)} className='input'>
                         <option value="catagory">catagory</option>
