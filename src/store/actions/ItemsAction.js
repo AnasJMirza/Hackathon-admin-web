@@ -52,12 +52,12 @@ export const fetchProducts = (setLoader) => async (dispatch) => {
 }
 
 
-export const addProducts = (productTitle, productPrice, productCatagory, setLoader) => async (dispatch) => {
+export const addProducts = (productTitle, productPrice, productCatagory,productDescription, setLoader) => async (dispatch) => {
     setLoader(true)
     try {
 
         
-        await addDoc(collection(db, "products"), {title : productTitle, price : productPrice, catagory : productCatagory,  description : 'Apple M1 chip with 8-core CPU, 8‑core GPU, and 16‑core Neural Engine; 8GB unified memory; 256GB SSD storage; 13-inch Retina display with True Tone ...'})
+        await addDoc(collection(db, "products"), {title : productTitle, price : productPrice, catagory : productCatagory,  description : productDescription})
 
         toast.success("Or Kuch Boss ? 🔥")
 

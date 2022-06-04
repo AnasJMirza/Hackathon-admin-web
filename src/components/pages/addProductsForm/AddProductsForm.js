@@ -41,12 +41,12 @@ const AddProductsForm = () => {
 
     const submitHandler = () => {
         
-        if(productDescription.length == 10){
-            dispatch(addProducts(productTitle, productPrice, productCatagory, setLoader))
-        }
-        else{
-            alert("Description is too short")
-        }
+        // if(productDescription.length == 50){
+            dispatch(addProducts(productTitle, productPrice, productCatagory,productDescription, setLoader))
+        // }
+        // else{
+            // alert("Description is too short (Must be 50 characters)")
+        // }
     }
 
 
