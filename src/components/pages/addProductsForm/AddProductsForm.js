@@ -19,6 +19,7 @@ const AddProductsForm = () => {
 
     let productTitle = "";
     let productPrice = "";
+    let productDescription = "";
     let productCatagory = "";
 
     const titleGetter = (e) => {
@@ -33,9 +34,19 @@ const AddProductsForm = () => {
         productCatagory = e.target.value
     }
 
+    const descriptionGetter = (e) => {
+        productDescription = e.target.value
+    }
+
 
     const submitHandler = () => {
-        dispatch(addProducts(productTitle, productPrice, productCatagory, setLoader))
+        
+        if(productDescription.length == 10){
+            dispatch(addProducts(productTitle, productPrice, productCatagory, setLoader))
+        }
+        else{
+            alert("Description is too short")
+        }
     }
 
 
@@ -58,7 +69,7 @@ const AddProductsForm = () => {
                 <div className='input-feilds'>
                     <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title'  className='input' / >
                     <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' className='input' />
-                    <input   type="string" placeholder='Description' className='input' />
+                    <input  onChange={(e)=>descriptionGetter(e)} type="string" placeholder='Description' className='input' />
 
                     <select onChange={(e)=>catagoryGetter(e)} className='input'>
                         <option value="catagory">catagory</option>
