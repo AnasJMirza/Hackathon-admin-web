@@ -52,12 +52,12 @@ export const fetchProducts = (setLoader) => async (dispatch) => {
 }
 
 
-export const addProducts = (productTitle, productPrice, productCatagory,productDescription, setLoader) => async (dispatch) => {
+export const addProducts = (productTitle, productPrice, productCatagory,smallProductDescription, setLoader) => async (dispatch) => {
     setLoader(true)
     try {
-
         
-        await addDoc(collection(db, "products"), {title : productTitle, price : productPrice, catagory : productCatagory,  description : productDescription})
+        await addDoc(collection(db, "products"), {title : productTitle, price : productPrice, catagory : productCatagory,  description : smallProductDescription})
+        
 
         toast.success("Or Kuch Boss ? 🔥")
 

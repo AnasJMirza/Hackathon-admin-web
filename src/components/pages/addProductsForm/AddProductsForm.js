@@ -8,6 +8,7 @@ import './AddProductsForm.css'
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../../config/firebase';
 import { onSnapshot } from 'firebase/firestore';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddProductsForm = () => {
 
@@ -21,6 +22,8 @@ const AddProductsForm = () => {
     let productPrice = "";
     let productDescription = "";
     let productCatagory = "";
+    let smallProductDescription = "";
+    
 
     const titleGetter = (e) => {
         productTitle = e.target.value
@@ -38,15 +41,21 @@ const AddProductsForm = () => {
         productDescription = e.target.value
     }
 
+    const truncate = (productDescription)=>{
+        return productDescription?.length > 150? productDescription.substr(0, 150) + '...' : productDescription;
+    }
 
+    
     const submitHandler = () => {
+
+        if(productTitle.length <= 0 || productPrice.length <= 0 || productDescription.length <= 0 || productCatagory.length <= 0){
+            toast.success("acha")
+            alert("helo")
+        }else{
+            smallProductDescription = truncate(productDescription)    
+            dispatch(addProducts(productTitle, productPrice, productCatagory,smallProductDescription , setLoader))
+        }
         
-        // if(productDescription.length == 50){
-            dispatch(addProducts(productTitle, productPrice, productCatagory,productDescription, setLoader))
-        // }
-        // else{
-            // alert("Description is too short (Must be 50 characters)")
-        // }
     }
 
 
@@ -60,16 +69,27 @@ const AddProductsForm = () => {
 
     return (
         <div className='form-body'>
-            
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
+            <ToastContainer />
 
             <form action='#' className='form'>
                 <p className='product-information'>Prodcut Information</p>
                 <div className='hr'/>
 
                 <div className='input-feilds'>
-                    <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title'  className='input' / >
-                    <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' className='input' />
-                    <input  onChange={(e)=>descriptionGetter(e)} type="string" placeholder='Description' className='input' />
+                    <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title'  className='input' required / >
+                    <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' className='input' required/>
+                    <input  onChange={(e)=>descriptionGetter(e)} type="string" placeholder='Description' className='input' required />
 
                     <select onChange={(e)=>catagoryGetter(e)} className='input'>
                         <option value="catagory">catagory</option>
@@ -81,7 +101,7 @@ const AddProductsForm = () => {
                 </div>
 
                 <div onClick={submitHandler} className="submit-button">
-                    <Link to="/items"><Button title="Submit" width="10vw" /></Link>
+                    <Link to="/add-products-form"><Button title="Submit" width="10vw" /></Link>
                 </div>
             </form>
         </div>
