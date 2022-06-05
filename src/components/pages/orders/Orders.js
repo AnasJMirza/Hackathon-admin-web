@@ -1,10 +1,14 @@
 import React from 'react';
+import Sidebar from '../../sidebar/Sidebar';
 import './Orders.css'
 
 const Orders = () => {
     return (
-        <div className='orders-body'>
-            Orders
+        <div>
+            <Sidebar/>
+            <div className='orders-body'>
+                Orders
+            </div>
         </div>
     );
 };

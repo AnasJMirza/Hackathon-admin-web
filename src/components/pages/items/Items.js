@@ -8,6 +8,7 @@ import Button from '../../button/Button';
 import { ToastContainer } from 'react-toastify';
 import { PuffLoader } from 'react-spinners';
 import { deleteItem } from '../../../store/actions/ItemsAction';
+import Sidebar from '../../sidebar/Sidebar';
 
 const Items = () => {
 
@@ -44,45 +45,48 @@ const Items = () => {
 
     return (
 
-        <div className='items-body'>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                />
-            <ToastContainer />
-            <table className='table'>
-                <tr>
-                    <th>SR#</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Catagory</th>
-                    <th>Action</th>
-                </tr>
-
-                {allProducts?.map((item, index)=>{
-                    return <tr>
-                        <td>{index + 1}</td>
-                        <td>{item.title}</td>
-                        <td> ${item.price}</td>
-                        <td> {item.catagory}</td>
-                        <td className='actions'> <button onClick={()=>deleteItems(item)}><Button title="Delete" width="6vw"/></button></td>
+        <div>
+            <Sidebar/>
+            <div className='items-body'>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    />
+                <ToastContainer />
+                <table className='table'>
+                    <tr>
+                        <th>SR#</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Catagory</th>
+                        <th>Action</th>
                     </tr>
-                })}
 
-            </table>
+                    {allProducts?.map((item, index)=>{
+                        return <tr>
+                            <td>{index + 1}</td>
+                            <td>{item.title}</td>
+                            <td> ${item.price}</td>
+                            <td> {item.catagory}</td>
+                            <td className='actions'> <button onClick={()=>deleteItems(item)}><Button title="Delete" width="6vw"/></button></td>
+                        </tr>
+                    })}
 
-            <Link to="/add-products-form" className='buttons' >
-                <Button title="Add Products" width="100vw"/>
-            </Link>
+                </table>
 
-            
+                <Link to="/add-products-form" className='buttons' >
+                    <Button title="Add Products" width="100vw"/>
+                </Link>
+
+                
+            </div>
         </div>
     );
 };

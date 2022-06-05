@@ -1,10 +1,14 @@
 import React from 'react';
+import Sidebar from '../../sidebar/Sidebar';
 import './DashBoard.css'
 
 const DashBoard = () => {
     return (
-        <div className='dashboard-body'>
-            DashBoard
+        <div>
+            <Sidebar/>
+            <div className='dashboard-body'>
+                DashBoard
+            </div>
         </div>
     );
 };

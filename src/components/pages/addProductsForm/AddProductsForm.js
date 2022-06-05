@@ -49,8 +49,8 @@ const AddProductsForm = () => {
     const submitHandler = () => {
 
         if(productTitle.length <= 0 || productPrice.length <= 0 || productDescription.length <= 0 || productCatagory.length <= 0){
-            toast.success("acha")
-            alert("helo")
+            // toast.error("Pleas fill all inputs")
+            alert("Pleas fill all inputs")
         }else{
             smallProductDescription = truncate(productDescription)    
             dispatch(addProducts(productTitle, productPrice, productCatagory,smallProductDescription , setLoader))
@@ -69,7 +69,7 @@ const AddProductsForm = () => {
 
     return (
         <div className='form-body'>
-            <ToastContainer
+            {/* <ToastContainer
                 position="top-right"
                 autoClose={5000}
                 hideProgressBar={false}
@@ -80,7 +80,7 @@ const AddProductsForm = () => {
                 draggable
                 pauseOnHover
                 />
-            <ToastContainer />
+            <ToastContainer /> */}
 
             <form action='#' className='form'>
                 <p className='product-information'>Prodcut Information</p>
@@ -101,7 +101,7 @@ const AddProductsForm = () => {
                 </div>
 
                 <div onClick={submitHandler} className="submit-button">
-                    <Link to="/add-products-form"><Button title="Submit" width="10vw" /></Link>
+                    <Link to="/items"><Button title="Submit" width="10vw" /></Link>
                 </div>
             </form>
         </div>
