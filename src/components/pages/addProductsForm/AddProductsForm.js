@@ -5,10 +5,9 @@ import Button from '../../button/Button';
 import { Link } from 'react-router-dom';
 import {PuffLoader} from 'react-spinner'
 import './AddProductsForm.css'
-import { ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../../config/firebase';
-import { onSnapshot } from 'firebase/firestore';
-import { ToastContainer, toast } from 'react-toastify';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+
 
 const AddProductsForm = () => {
 
@@ -23,6 +22,7 @@ const AddProductsForm = () => {
     let productDescription = "";
     let productCatagory = "";
     let smallProductDescription = "";
+    let file = "";
     
 
     const titleGetter = (e) => {
@@ -41,6 +41,11 @@ const AddProductsForm = () => {
         productDescription = e.target.value
     }
 
+    const fileGetter = (e) => {
+        file = e.target.files[0]
+        console.log(file);
+    }
+
     const truncate = (productDescription)=>{
         return productDescription?.length > 150? productDescription.substr(0, 150) + '...' : productDescription;
     }
@@ -48,12 +53,16 @@ const AddProductsForm = () => {
     
     const submitHandler = () => {
 
+        const storageRef = ref(storage, file.name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        
+
         if(productTitle.length <= 0 || productPrice.length <= 0 || productDescription.length <= 0 || productCatagory.length <= 0){
             // toast.error("Pleas fill all inputs")
             alert("Pleas fill all inputs")
         }else{
             smallProductDescription = truncate(productDescription)    
-            dispatch(addProducts(productTitle, productPrice, productCatagory,smallProductDescription , setLoader))
+            dispatch(addProducts(productTitle, productPrice, productCatagory,smallProductDescription , file, setLoader))
         }
         
     }
@@ -90,6 +99,7 @@ const AddProductsForm = () => {
                     <input  onChange={(e)=>titleGetter(e)} type="text" placeholder='Prodcut Title'  className='input' required / >
                     <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' className='input' required/>
                     <input  onChange={(e)=>descriptionGetter(e)} type="string" placeholder='Description' className='input' required />
+                    <input  onChange={(e)=>fileGetter(e)} type="file" className='input' required />
 
                     <select onChange={(e)=>catagoryGetter(e)} className='input'>
                         <option value="catagory">catagory</option>
