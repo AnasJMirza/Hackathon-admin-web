@@ -23,6 +23,7 @@ const AddProductsForm = () => {
     let productCatagory = "";
     let smallProductDescription = "";
     let file = "";
+    let url = "";
     
 
     const titleGetter = (e) => {
@@ -50,19 +51,40 @@ const AddProductsForm = () => {
         return productDescription?.length > 150? productDescription.substr(0, 150) + '...' : productDescription;
     }
 
+
+    const fileUpload = ()=>{
+        const storageRef =  ref(storage, `images/${file.name}`);
+        const uploadTask =  uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+       (snapshot) => {
+          const progress = 
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+        },
+        async () => {
+        await getDownloadURL(uploadTask.snapshot.ref).then( (downloadURL) => {
+            console.log('you can find the file here ', downloadURL);
+            alert("Imaeg uploaded")
+            url = downloadURL
+        });
+        }
+      );
+    }
+
     
     const submitHandler = () => {
-
-        const storageRef = ref(storage, file.name);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-        
 
         if(productTitle.length <= 0 || productPrice.length <= 0 || productDescription.length <= 0 || productCatagory.length <= 0){
             // toast.error("Pleas fill all inputs")
             alert("Pleas fill all inputs")
         }else{
             smallProductDescription = truncate(productDescription)    
-            dispatch(addProducts(productTitle, productPrice, productCatagory,smallProductDescription , file, setLoader))
+            dispatch(addProducts(productTitle, productPrice, productCatagory,smallProductDescription ,url,  setLoader))
         }
         
     }
@@ -100,6 +122,7 @@ const AddProductsForm = () => {
                     <input  onChange={(e)=>priceGetter(e)} type="number" placeholder='Product Price' className='input' required/>
                     <input  onChange={(e)=>descriptionGetter(e)} type="string" placeholder='Description' className='input' required />
                     <input  onChange={(e)=>fileGetter(e)} type="file" className='input' required />
+                    <button onClick={fileUpload}>Upload File</button>
 
                     <select onChange={(e)=>catagoryGetter(e)} className='input'>
                         <option value="catagory">catagory</option>

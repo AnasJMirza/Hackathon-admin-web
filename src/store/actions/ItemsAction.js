@@ -59,42 +59,23 @@ export const addProducts =
     productPrice,
     productCatagory,
     smallProductDescription,
-    file,
+    url,
     setLoader
   ) =>
   async (dispatch) => {
     setLoader(true);
     try {
-        let downloadURL = ''
-      const storageRef = ref(storage, `images/${file.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
 
-        uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = 
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
-        },
-        (error) => {
-          console.log(error);
-        },
-
-        async () => {
-          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
-          });
-        }
-      );
-
-      await addDoc(collection(db, "products"), {
+        await addDoc(collection(db, "products"), {
         title: productTitle,
         price: productPrice,
         catagory: productCatagory,
         description: smallProductDescription,
-        url: downloadURL,
-      });
-      toast.success("Or Kuch Boss ? 🔥");
+        url : url
+        });
+
+        toast.success("Or Kuch Boss ? 🔥");
+
     } catch (error) {
       alert(error.message);
     } finally {
