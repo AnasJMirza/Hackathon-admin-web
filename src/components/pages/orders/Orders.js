@@ -5,7 +5,6 @@ import './Orders.css'
 const Orders = () => {
     return (
         <div>
-            <Sidebar/>
             <div className='orders-body'>
                 Orders
             </div>

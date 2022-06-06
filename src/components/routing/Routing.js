@@ -12,7 +12,7 @@ const Routing = () => {
     return (
         <div>
             <BrowserRouter>
-                {/* <Sidebar/> */}
+                <Sidebar/>
                     <Routes>
                         <Route path='/' element={<Login/>}/>
                         <Route path='/dashboard' element={<DashBoard/>}/>

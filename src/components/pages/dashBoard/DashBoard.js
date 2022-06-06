@@ -5,7 +5,6 @@ import './DashBoard.css'
 const DashBoard = () => {
     return (
         <div>
-            <Sidebar/>
             <div className='dashboard-body'>
                 DashBoard
             </div>

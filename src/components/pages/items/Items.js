@@ -46,20 +46,18 @@ const Items = () => {
     return (
 
         <div>
-            <Sidebar/>
             <div className='items-body'>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    />
-                <ToastContainer />
+            <ToastContainer
+            position="bottom-left"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            />
                 <table className='table'>
                     <tr>
                         <th>SR#</th>
