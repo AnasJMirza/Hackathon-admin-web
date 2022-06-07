@@ -15,9 +15,12 @@ import { async } from "@firebase/util";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../config/firebase";
 
+
+
 export const ADD_ITEMS = "ADD_ITEMS";
 export const DEL_ITEMS = "DEL_ITEMS";
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
+export const ADD_PRODUCTS = "ADD_PRODUCTS";
 
 // const addItems = () => async (dispatch) => {
 //     try {
@@ -68,29 +71,10 @@ export const addProducts =
 
         let url = ''
         const storageRef =  ref(storage, `images/${file.name}`);
-        const uploadTask =  uploadBytesResumable(storageRef, file);
+        const uploadSnap =  await uploadBytesResumable(storageRef, file);
+        url = await getDownloadURL(storageRef)
 
-      uploadTask.on(
-        "state_changed",
-       (snapshot) => {
-          const progress = 
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-            getDownloadURL(uploadTask.snapshot.ref).then( (downloadURL) => {
-            console.log('you can find the file here ', downloadURL);
-            alert("Imaeg uploaded")
-            url = downloadURL
-        });
-        }
-        
-      );
-
-
+        console.log("Snap Uploaded");
 
         await addDoc(collection(db, "products"), {
         title: productTitle,
@@ -99,6 +83,24 @@ export const addProducts =
         description: smallProductDescription,
         url : url
         });
+
+        let docData = {
+            title: productTitle,
+            price: productPrice,
+            catagory: productCatagory,
+            description: smallProductDescription,
+            url : url
+        }
+
+        
+
+        console.log("Document Added");
+        console.log("docData", docData);
+
+        dispatch({
+            type : ADD_PRODUCTS,
+            payload : docData
+        })
 
         toast.success("Or Kuch Boss ? 🔥");
 

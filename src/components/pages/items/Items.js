@@ -67,7 +67,7 @@ const Items = () => {
                         <th>Action</th>
                     </tr>
 
-                    {allProducts?.map((item, index)=>{
+                    {/* {allProducts?.map((item, index)=>{
                         return <tr>
                             <td>{index + 1}</td>
                             <td>{item.title}</td>
@@ -75,7 +75,7 @@ const Items = () => {
                             <td> {item.catagory}</td>
                             <td className='actions'> <button onClick={()=>deleteItems(item)}><Button title="Delete" width="6vw"/></button></td>
                         </tr>
-                    })}
+                    })} */}
 
                 </table>
 

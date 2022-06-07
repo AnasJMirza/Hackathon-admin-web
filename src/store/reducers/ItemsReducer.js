@@ -1,4 +1,4 @@
-import { DEL_ITEMS, FETCH_PRODUCTS } from "../actions/ItemsAction"
+import { ADD_PRODUCTS, DEL_ITEMS, FETCH_PRODUCTS } from "../actions/ItemsAction"
 
 
 const initialState = {
@@ -22,6 +22,14 @@ export default function name(state = initialState, action) {
         case DEL_ITEMS:
 
             return {
+                ...state,
+                products : action.payload
+            }
+        
+        case ADD_PRODUCTS:
+            console.log("docData reducer");
+
+            return{
                 ...state,
                 products : action.payload
             }
