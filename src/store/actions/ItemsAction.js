@@ -71,7 +71,7 @@ export const addProducts =
 
         let url = ''
         const storageRef =  ref(storage, `images/${file.name}`);
-        const uploadSnap =  await uploadBytesResumable(storageRef, file);
+        await uploadBytesResumable(storageRef, file);
         url = await getDownloadURL(storageRef)
 
         console.log("Snap Uploaded");
