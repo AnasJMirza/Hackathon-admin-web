@@ -84,24 +84,6 @@ export const addProducts =
         url : url
         });
 
-        let docData = {
-            title: productTitle,
-            price: productPrice,
-            catagory: productCatagory,
-            description: smallProductDescription,
-            url : url
-        }
-
-        
-
-        console.log("Document Added");
-        console.log("docData", docData);
-
-        dispatch({
-            type : ADD_PRODUCTS,
-            payload : docData
-        })
-
         toast.success("Or Kuch Boss ? 🔥");
 
     } catch (error) {

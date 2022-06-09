@@ -25,14 +25,7 @@ export default function name(state = initialState, action) {
                 ...state,
                 products : action.payload
             }
-        
-        case ADD_PRODUCTS:
-            console.log("docData reducer");
 
-            return{
-                ...state,
-                products : action.payload
-            }
     
         default:
             return{
