@@ -113,6 +113,8 @@ export const deleteItem = (setLoader, item) => async (dispatch) => {
     toast("Ura dya bro 🔥");
   } catch (error) {
   } finally {
+    // this will exit from the loading screen
     setLoader(false);
+    
   }
 };
