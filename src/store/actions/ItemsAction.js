@@ -94,6 +94,7 @@ export const addProducts =
   };
 
 export const deleteItem = (setLoader, item) => async (dispatch) => {
+  // set the loader on screen and try to request on the internet untill it gets the response
   setLoader(true);
   try {
     await deleteDoc(doc(db, "products", item.id));
